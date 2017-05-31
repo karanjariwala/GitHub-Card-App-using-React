@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8,21 +8,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Card = function Card(props) {
   return React.createElement(
-    'div',
-    { style: { margin: '1em' } },
-    React.createElement('img', { width: '75', src: props.avatar_url }),
+    "div",
+    { style: { margin: "1em" } },
+    React.createElement("img", { width: "75", src: props.avatar_url }),
     React.createElement(
-      'div',
-      { style: { display: 'inline-block', marginLeft: '10' } },
+      "div",
+      { style: { display: "inline-block", marginLeft: "10" } },
       React.createElement(
-        'div',
-        { style: { fontSize: '1.2em', fontWeight: 'bold' } },
+        "div",
+        { style: { fontSize: "1.2em", fontWeight: "bold" } },
         props.name
       ),
       React.createElement(
-        'div',
+        "div",
         null,
-        ' ',
+        " ",
         props.company
       )
     )
@@ -31,7 +31,7 @@ var Card = function Card(props) {
 
 var CardList = function CardList(props) {
   return React.createElement(
-    'div',
+    "div",
     null,
     props.cards.map(function (card) {
       return React.createElement(Card, card);
@@ -47,17 +47,18 @@ var Form = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 
-    _this.state = { userName: '' };
+    _this.state = { userName: "" };
     return _this;
   }
 
   Form.prototype.handleSubmit = function handleSubmit(event) {
     var _this2 = this;
 
-    console.log('username' + this.userNameInput.value);
-    axios.get('https://api.github.com/users/' + this.state.userName).then(function (resp) {
+    console.log("username" + this.userNameInput.value);
+    axios.get("https://api.github.com/users/" + this.state.userName).then(function (resp) {
       // console.log(resp)
       _this2.props.onSubmit(resp.data);
+      _this2.setState({ userName: '' });
     });
   };
 
@@ -65,19 +66,28 @@ var Form = function (_React$Component) {
     var _this3 = this;
 
     return React.createElement(
-      'form',
-      { onSubmit: function onSubmit(event) {
+      "form",
+      {
+        onSubmit: function onSubmit(event) {
           event.preventDefault(), _this3.handleSubmit();
-        } },
-      React.createElement('input', { ref: function ref(input) {
+        }
+      },
+      React.createElement("input", {
+        ref: function ref(input) {
           return _this3.userNameInput = input;
-        }, value: this.state.userName, onChange: function onChange(event) {
+        },
+        value: this.state.userName,
+        onChange: function onChange(event) {
           return _this3.setState({ userName: event.target.value });
-        }, type: 'text', placeholder: 'github Username', required: true }),
+        },
+        type: "text",
+        placeholder: "github Username",
+        required: true
+      }),
       React.createElement(
-        'button',
-        { type: 'submit' },
-        'Add Card'
+        "button",
+        { type: "submit" },
+        "Add Card"
       )
     );
   };
@@ -94,7 +104,8 @@ var App = function (_React$Component2) {
     var _this4 = _possibleConstructorReturn(this, _React$Component2.call(this, props));
 
     _this4.state = {
-      Cards: [] };
+      Cards: []
+    };
     return _this4;
   }
 
@@ -108,7 +119,7 @@ var App = function (_React$Component2) {
 
   App.prototype.render = function render() {
     return React.createElement(
-      'div',
+      "div",
       null,
       React.createElement(Form, { onSubmit: this.addNewCard.bind(this) }),
       React.createElement(CardList, { cards: this.state.Cards })
@@ -118,4 +129,4 @@ var App = function (_React$Component2) {
   return App;
 }(React.Component);
 
-ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
+ReactDOM.render(React.createElement(App, null), document.getElementById("app"));
