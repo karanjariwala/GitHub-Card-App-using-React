@@ -33,9 +33,9 @@ class Form extends React.Component{
     .then(resp=>{
       // console.log(resp)
       this.props.onSubmit(resp.data)
-      
+        this.setState({userName:''})
     })
-    this.setState({userName:''})
+  
     
   }
   render(){
